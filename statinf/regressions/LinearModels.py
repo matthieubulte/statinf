@@ -77,11 +77,8 @@ class OLS:
         betas
             The estimated coefficients.
         """
-        XtX = self.get_X().T.dot(self.get_X())
-        XtX_1 = np.linalg.inv(XtX)
-        XtY = self.get_X().T.dot(self.Y)
-        beta = XtX_1.dot(XtY)
-        return(beta)
+        X = self.get_X()
+        return np.linalg.solve(X.T.dot(X), X.T.dot(self.Y))
     
     def fitted_values(self):
         """

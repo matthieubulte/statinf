@@ -90,7 +90,7 @@ class GLM:
             it           += 1
             log_like      = self._log_likelihood()
             gradient      = self._jacobian()
-            variation     = self.variance().dot(gradient)
+            variation     = np.linalg.solve(self._hessian(), gradient)
             self.beta    -= variation.T
             diff          = old_log_like - log_like
             old_log_like  = log_like
